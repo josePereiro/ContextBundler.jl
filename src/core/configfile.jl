@@ -68,7 +68,10 @@ end
 
 function read_config()
     path = resolve_config_file()
-    isnothing(path) && return Dict{String,Any}()
+    if isnothing(path) 
+        @warn "No config file found"
+        return Dict{String,Any}()
+    end
     isfile(path) || return Dict{String,Any}()
     _cfg = Dict{String,Any}()
     _read_json_with_comments!(_cfg, path)

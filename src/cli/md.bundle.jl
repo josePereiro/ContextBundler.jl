@@ -21,13 +21,13 @@
 #     elseif out_mode == "clipboard-file"
 #         base = get(cfg, "__config.base", pwd())
 #         md_output_file = get(cfg, "output.path", "~/Documents/context.md")
-#         output_path = _canonicalize(md_output_file; base)
+#         output_path = _canonicalize_path(md_output_file; base)
 #         write_output(output_path, lines; log)
 #         clipboard_file(output_path; log)
 #     elseif out_mode == "file"
 #         base = get(cfg, "__config.base", pwd())
 #         md_output_file = get(cfg, "output.path", "ContextBundler.md")
-#         output_path = _canonicalize(md_output_file; base)
+#         output_path = _canonicalize_path(md_output_file; base)
 #         write_output(output_path, lines; log)
 #     else
 #         log && @error "Unknown out_mode" out_mode

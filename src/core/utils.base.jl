@@ -7,7 +7,14 @@ function _match_anyglob(path::String, fms::Vector{<:Glob.FilenameMatch})
     return false
 end
 
-function _canonicalize(path; base=pwd())
+_do_nothing(path) = nothing
+
+function _mkdirpath(path::AbstractString) 
+    _dir = dirname(path)
+    isdir(_dir) || mkpath(_dir)
+end
+
+function _canonicalize_path(path; base=pwd())
     p = expanduser(path)
     p = isabspath(p) ? p : abspath(base, p)
     p = normpath(p)  # tidy but don't require existence
